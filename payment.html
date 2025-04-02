@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pagamento - Mont Cruz</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        .payment-container {
+            max-width: 1200px;
+            margin: 100px auto;
+            padding: 2rem;
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 3rem;
+        }
+
+        .payment-methods {
+            background: var(--card-background);
+            padding: 2rem;
+            border-radius: 20px;
+            border: 1px solid var(--glass-effect);
+        }
+
+        .payment-summary {
+            background: var(--card-background);
+            padding: 2rem;
+            border-radius: 20px;
+            border: 1px solid var(--glass-effect);
+            position: sticky;
+            top: 100px;
+        }
+
+        .payment-option {
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            border-radius: 15px;
+            background: rgba(255, 255, 255, 0.05);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .payment-option:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .payment-option.selected {
+            border: 2px solid var(--accent-color);
+        }
+
+        .payment-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .payment-icon {
+            font-size: 2rem;
+        }
+
+        .payment-details {
+            display: none;
+            margin-top: 1rem;
+        }
+
+        .payment-option.selected .payment-details {
+            display: block;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--accent-color);
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 1rem;
+            border: 1px solid var(--glass-effect);
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text-color);
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .card-inputs {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .summary-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--glass-effect);
+        }
+
+        .total {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--accent-color);
+        }
+
+        .installments {
+            margin-top: 1rem;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+        }
+
+        .installment-option {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.5rem;
+            cursor: pointer;
+        }
+
+        .installment-option:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .crypto-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .crypto-option {
+            padding: 1rem;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        .crypto-option:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .pix-qrcode {
+            text-align: center;
+            margin-top: 1rem;
+        }
+
+        .pix-qrcode img {
+            width: 200px;
+            height: 200px;
+            background: white;
+            padding: 1rem;
+            border-radius: 10px;
+        }
+
+        .copy-button {
+            background: var(--glass-effect);
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            color: var(--text-color);
+            cursor: pointer;
+            margin-top: 1rem;
+        }
+
+        .copy-button:hover {
+            background: var(--accent-color);
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <nav class="nav-container">
+            <div class="logo">
+                <h1><a href="index.html" style="text-decoration: none; color: inherit;">Mont Cruz</a></h1>
+            </div>
+        </nav>
+    </header>
+
+    <div class="payment-container">
+        <div class="payment-methods">
+            <h2 style="margin-bottom: 2rem;">Escolha a forma de pagamento</h2>
+
+            <div class="payment-option selected" data-method="credit-card">
+                <div class="payment-header">
+                    <div class="payment-icon">💳</div>
+                    <h3>Cartão de Crédito</h3>
+                </div>
+                <div class="payment-details">
+                    <div class="form-group">
+                        <label>Número do Cartão</label>
+                        <input type="text" placeholder="0000 0000 0000 0000">
+                    </div>
+                    <div class="card-inputs">
+                        <div class="form-group">
+                            <label>Validade</label>
+                            <input type="text" placeholder="MM/AA">
+                        </div>
+                        <div class="form-group">
+                            <label>CVV</label>
+                            <input type="text" placeholder="123">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Nome no Cartão</label>
+                        <input type="text" placeholder="Como está no cartão">
+                    </div>
+                </div>
+            </div>
+
+            <div class="payment-option" data-method="pix">
+                <div class="payment-header">
+                    <div class="payment-icon">📱</div>
+                    <h3>PIX</h3>
+                </div>
+                <div class="payment-details">
+                    <div class="pix-qrcode">
+                        <div style="width: 200px; height: 200px; background: white; margin: 0 auto;"></div>
+                        <p style="margin-top: 1rem;">Escaneie o QR Code ou copie a chave PIX</p>
+                        <button class="copy-button">Copiar Chave PIX</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="payment-option" data-method="crypto">
+                <div class="payment-header">
+                    <div class="payment-icon">₿</div>
+                    <h3>Criptomoedas</h3>
+                </div>
+                <div class="payment-details">
+                    <div class="crypto-options">
+                        <div class="crypto-option">
+                            <h4>Bitcoin</h4>
+                            <p>BTC</p>
+                        </div>
+                        <div class="crypto-option">
+                            <h4>Ethereum</h4>
+                            <p>ETH</p>
+                        </div>
+                        <div class="crypto-option">
+                            <h4>USDT</h4>
+                            <p>Tether</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="payment-summary">
+            <h2 style="margin-bottom: 2rem;">Resumo do Pedido</h2>
+            <div class="summary-item">
+                <span>Projeto Estrutural</span>
+                <span>R$ 1.000,00</span>
+            </div>
+            <div class="summary-item">
+                <span>Taxa de Processamento</span>
+                <span>R$ 0,00</span>
+            </div>
+            <div class="summary-item total">
+                <span>Total</span>
+                <span>R$ 1.000,00</span>
+            </div>
+
+            <div class="installments">
+                <h3 style="margin-bottom: 1rem;">Parcelamento</h3>
+                <div class="installment-option">
+                    <span>1x de R$ 1.000,00</span>
+                    <span>sem juros</span>
+                </div>
+                <div class="installment-option">
+                    <span>6x de R$ 183,33</span>
+                    <span>com juros</span>
+                </div>
+                <div class="installment-option">
+                    <span>12x de R$ 98,33</span>
+                    <span>com juros</span>
+                </div>
+            </div>
+
+            <button class="cta-button-large" style="width: 100%; margin-top: 2rem;">Finalizar Pagamento</button>
+        </div>
+    </div>
+
+    <script>
+        // Payment method selection
+        const paymentOptions = document.querySelectorAll('.payment-option');
+        paymentOptions.forEach(option => {
+            option.addEventListener('click', () => {
+                paymentOptions.forEach(opt => opt.classList.remove('selected'));
+                option.classList.add('selected');
+            });
+        });
+
+        // Copy PIX key
+        document.querySelector('.copy-button').addEventListener('click', function() {
+            alert('Chave PIX copiada!');
+        });
+
+        // Crypto selection
+        document.querySelectorAll('.crypto-option').forEach(option => {
+            option.addEventListener('click', function() {
+                alert(`Selecionado pagamento em ${this.querySelector('h4').textContent}`);
+            });
+        });
+
+        // Payment submission
+        document.querySelector('.cta-button-large').addEventListener('click', function() {
+            const selectedMethod = document.querySelector('.payment-option.selected').getAttribute('data-method');
+            alert(`Processando pagamento via ${selectedMethod}...`);
+            // Add payment processing logic here
+            setTimeout(() => {
+                alert('Pagamento processado com sucesso!');
+                window.location.href = 'dashboard.html';
+            }, 2000);
+        });
+    </script>
+</body>
+</html> 

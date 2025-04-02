@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Mont Cruz</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        .dashboard-container {
+            display: grid;
+            grid-template-columns: 250px 1fr;
+            min-height: 100vh;
+        }
+
+        .sidebar {
+            background: var(--secondary-color);
+            padding: 2rem;
+            border-right: 1px solid var(--glass-effect);
+        }
+
+        .sidebar-menu {
+            list-style: none;
+            margin-top: 2rem;
+        }
+
+        .sidebar-menu li {
+            margin-bottom: 1rem;
+        }
+
+        .sidebar-menu a {
+            color: var(--text-color);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            padding: 0.8rem 1rem;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .sidebar-menu a:hover,
+        .sidebar-menu a.active {
+            background: var(--glass-effect);
+            color: var(--accent-color);
+        }
+
+        .main-content {
+            padding: 2rem;
+            background: var(--background-color);
+        }
+
+        .dashboard-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .user-welcome {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .user-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        .dashboard-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .dashboard-card {
+            background: var(--card-background);
+            padding: 1.5rem;
+            border-radius: 20px;
+            border: 1px solid var(--glass-effect);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .card-icon {
+            font-size: 2rem;
+            color: var(--accent-color);
+        }
+
+        .project-list {
+            display: grid;
+            gap: 1rem;
+        }
+
+        .project-item {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 1rem;
+            border-radius: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .project-status {
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+
+        .status-pending {
+            background: rgba(255, 193, 7, 0.2);
+            color: #ffc107;
+        }
+
+        .status-progress {
+            background: rgba(0, 123, 255, 0.2);
+            color: #007bff;
+        }
+
+        .status-completed {
+            background: rgba(40, 167, 69, 0.2);
+            color: #28a745;
+        }
+
+        .project-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .action-button {
+            padding: 0.5rem;
+            border: none;
+            border-radius: 5px;
+            background: var(--glass-effect);
+            color: var(--text-color);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .action-button:hover {
+            background: var(--accent-color);
+        }
+
+        .chart-container {
+            background: var(--card-background);
+            padding: 1.5rem;
+            border-radius: 20px;
+            border: 1px solid var(--glass-effect);
+            margin-top: 2rem;
+        }
+
+        .notification-list {
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        .notification-item {
+            padding: 1rem;
+            border-bottom: 1px solid var(--glass-effect);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .notification-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--glass-effect);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent-color);
+        }
+
+        .notification-content {
+            flex: 1;
+        }
+
+        .notification-time {
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.6);
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard-container">
+        <aside class="sidebar">
+            <div class="logo">
+                <h1><a href="index.html" style="text-decoration: none; color: inherit;">Mont Cruz</a></h1>
+            </div>
+            <ul class="sidebar-menu">
+                <li><a href="#" class="active">Dashboard</a></li>
+                <li><a href="#">Meus Projetos</a></li>
+                <li><a href="#">Histórico de Compras</a></li>
+                <li><a href="#">Mensagens</a></li>
+                <li><a href="#">Configurações</a></li>
+                <li><a href="index.html">Sair</a></li>
+            </ul>
+        </aside>
+
+        <main class="main-content">
+            <div class="dashboard-header">
+                <div class="user-welcome">
+                    <div class="user-avatar">R</div>
+                    <div>
+                        <h2>Bem-vindo, Reyddner</h2>
+                        <p>Última atualização: 03/03/2025</p>
+                    </div>
+                </div>
+                <button class="cta-button">Novo Projeto</button>
+            </div>
+
+            <div class="dashboard-cards">
+                <div class="dashboard-card">
+                    <div class="card-header">
+                        <h3>Projetos Ativos</h3>
+                        <div class="card-icon">📊</div>
+                    </div>
+                    <div class="project-list">
+                        <div class="project-item">
+                            <div>
+                                <h4>Projeto Estrutural - Residência</h4>
+                                <span class="project-status status-progress">Em Andamento</span>
+                            </div>
+                            <div class="project-actions">
+                                <button class="action-button">👁️</button>
+                                <button class="action-button">💬</button>
+                            </div>
+                        </div>
+                        <div class="project-item">
+                            <div>
+                                <h4>Projeto Elétrico - Comercial</h4>
+                                <span class="project-status status-pending">Aguardando</span>
+                            </div>
+                            <div class="project-actions">
+                                <button class="action-button">👁️</button>
+                                <button class="action-button">💬</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dashboard-card">
+                    <div class="card-header">
+                        <h3>Notificações</h3>
+                        <div class="card-icon">🔔</div>
+                    </div>
+                    <div class="notification-list">
+                        <div class="notification-item">
+                            <div class="notification-icon">📝</div>
+                            <div class="notification-content">
+                                <p>Seu projeto estrutural foi atualizado</p>
+                                <span class="notification-time">Há 2 horas</span>
+                            </div>
+                        </div>
+                        <div class="notification-item">
+                            <div class="notification-icon">💰</div>
+                            <div class="notification-content">
+                                <p>Pagamento confirmado</p>
+                                <span class="notification-time">Há 1 dia</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="chart-container">
+                <div class="card-header">
+                    <h3>Histórico de Projetos</h3>
+                    <div class="card-icon">📈</div>
+                </div>
+                <div style="height: 300px; display: flex; align-items: center; justify-content: center;">
+                    <p>Gráfico de Projetos por Mês</p>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Add dashboard functionality here
+        document.querySelector('.cta-button').addEventListener('click', function() {
+            alert('Iniciando novo projeto...');
+        });
+
+        document.querySelectorAll('.action-button').forEach(button => {
+            button.addEventListener('click', function() {
+                const action = this.textContent;
+                const projectName = this.closest('.project-item').querySelector('h4').textContent;
+                if (action === '👁️') {
+                    alert(`Visualizando detalhes do projeto: ${projectName}`);
+                } else if (action === '💬') {
+                    alert(`Abrindo chat do projeto: ${projectName}`);
+                }
+            });
+        });
+    </script>
+</body>
+</html> 

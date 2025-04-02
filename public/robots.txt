@@ -1,0 +1,14 @@
+User-agent: *
+Allow: /
+Allow: /quem-somos.html
+Allow: /contato.html
+Allow: /sitemap.xml
+
+Disallow: /login.html
+Disallow: /dashboard.html
+Disallow: /payment.html
+Disallow: /server/
+Disallow: /js/
+Disallow: /css/
+
+Sitemap: https://montcruz.com.br/sitemap.xml

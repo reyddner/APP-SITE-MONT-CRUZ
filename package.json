@@ -1,0 +1,14 @@
+{
+  "name": "mont-cruz-website",
+  "version": "1.0.0",
+  "description": "Site institucional da Mont Cruz Engenharia",
+  "scripts": {
+    "test": "jest",
+    "start": "live-server"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0",
+    "live-server": "^1.2.2"
+  }
+}
